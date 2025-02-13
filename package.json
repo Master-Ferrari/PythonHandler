@@ -1,0 +1,27 @@
+{
+  "name": "python-handler",
+  "version": "1.0.1",
+  "description": "simple python childprocess wrapper",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "commonjs",
+  "scripts": {
+    "build": "npx rimraf ./lib && npx tsc",
+    "test": "npm run build && node ./lib/test.js",
+    "release": "npm run build && npm publish"
+  },
+  "keywords": [
+    "cosole",
+    "ts"
+  ],
+  "author": "Master-Ferrari",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "release-it": "^17.3.0",
+    "rimraf": "^5.0.7"
+  }
+}

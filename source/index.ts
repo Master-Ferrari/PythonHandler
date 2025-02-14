@@ -1,6 +1,7 @@
 import { spawn, ChildProcessWithoutNullStreams } from "child_process";
 import { TextEncoder } from "util";
-import { format, print, printE } from "ferrari-console-utils";
+import { format, print, printD, printE } from "ferrari-console-utils";
+import { existsSync } from "fs";
 
 interface PythonCommunicatorOptions {
     pythonPronoun?: string;
@@ -55,14 +56,19 @@ export class PythonCommunicator {
     }
 
     constructor(pyFilePath: string, opt?: PythonCommunicatorOptions) {
+        if (!existsSync(pyFilePath)) {
+            throw new Error(`File does not exist at path: ${pyFilePath}`);
+        }
         this.pyFilePath = pyFilePath;
+
+        this.printFromPython("Process started (" + pyFilePath + ")");
+        this.pythonProcess = spawn(this.pythonPronoun, [pyFilePath]);
 
         if (opt) {
             this.set(opt);
         }
 
-        this.printFromPython("Process started (" + pyFilePath + ")");
-        this.pythonProcess = spawn(this.pythonPronoun, [pyFilePath]);
+        // printD({pythonProcess: this.pythonProcess});
 
     }
 
@@ -82,7 +88,7 @@ export class PythonCommunicator {
 
     private printFromPython(string: string): void {
         if (!this.logging) return;
-        print("Python: " + format(string, { foreground: "blue" }));
+        print("PYTHON message to node: " + format(string, { foreground: "blue" }));
     }
 
     private errorFromPython(string: string, error: string): void {
@@ -91,6 +97,7 @@ export class PythonCommunicator {
     }
 
     send(msg: string): void {
+        print("NODE message to python: " + format(msg, { fg: "green" }));
         try {
             this.pythonProcess.stdin.write(this.stringToUint8Array(this.encodeToNumbers(msg) + "\n"));
         } catch (error) {

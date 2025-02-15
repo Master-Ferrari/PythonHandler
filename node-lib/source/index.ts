@@ -19,8 +19,6 @@ export class PythonCommunicator {
     private pythonPronoun: string = "python";
 
     set(opt: PythonCommunicatorOptions) {
-        this.logging = opt?.logging ?? true;
-        if (opt.pythonPronoun) this.pythonPronoun = opt.pythonPronoun;
 
         this.pythonProcess.stdout.removeAllListeners("data");
         this.pythonProcess.stderr.removeAllListeners("data");
@@ -60,6 +58,9 @@ export class PythonCommunicator {
             throw new Error(`File does not exist at path: ${pyFilePath}`);
         }
         this.pyFilePath = pyFilePath;
+
+        this.logging = opt?.logging ?? true;
+        if (opt?.pythonPronoun) this.pythonPronoun = opt.pythonPronoun;
 
         this.printFromPython("Process started (" + pyFilePath + ")");
         this.pythonProcess = spawn(this.pythonPronoun, [pyFilePath]);
@@ -102,7 +103,7 @@ export class PythonCommunicator {
             this.pythonProcess.stdin.write(this.stringToUint8Array(this.encodeToNumbers(msg) + "\n"));
         } catch (error) {
             printE("Error sending message:", error);
-        }
+        }                           
     }
 
     close(): void {

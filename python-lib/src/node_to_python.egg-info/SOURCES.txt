@@ -1,0 +1,11 @@
+LICENSE (3).txt
+README.md
+pyproject.toml
+setup.py
+src/node_to_python/__init__.py
+src/node_to_python/lib.py
+src/node_to_python.egg-info/PKG-INFO
+src/node_to_python.egg-info/SOURCES.txt
+src/node_to_python.egg-info/dependency_links.txt
+src/node_to_python.egg-info/top_level.txt
+tests/test.py

@@ -1,6 +1,6 @@
 import { PythonCommunicator } from "./index";
 
-const pyCom = new PythonCommunicator("python/test.py", {
+const pyCom = new PythonCommunicator("../python-lib/tests/test.py", {
     pythonPronoun: "python3"
 });
 

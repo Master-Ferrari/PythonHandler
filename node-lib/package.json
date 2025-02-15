@@ -1,5 +1,5 @@
 {
-  "name": "python-handler",
+  "name": "node-to-python",
   "version": "1.0.1",
   "description": "simple python childprocess wrapper",
   "main": "lib/index.js",

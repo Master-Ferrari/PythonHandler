@@ -1,7 +1,7 @@
 # test_node_communicator.py
 import sys
 import time
-from lib import NodeCommunicator
+from node_to_python import NodeCommunicator
 
 def on_message(message: str):
     print("Message received via callback:", message)

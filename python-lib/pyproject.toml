@@ -1,0 +1,9 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "node_to_python"
+version = "0.1.0"
+description = "node to python communication poop"
+readme = "README.md"

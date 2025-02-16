@@ -20,11 +20,11 @@ class NodeCommunicator:
         # Ensure proper UTF-8 support
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-    def encode_to_numbers(self, text: str) -> str:
+    def _encode_to_numbers(self, text: str) -> str:
         """Converts a string into a string of numbers separated by commas."""
         return ",".join(str(ord(c)) for c in text)
 
-    def decode_from_numbers(self, text: str) -> str:
+    def _decode_from_numbers(self, text: str) -> str:
         """Decodes a comma-separated string of numbers back into a string."""
         try:
             numbers = text.strip().split(',')
@@ -38,7 +38,7 @@ class NodeCommunicator:
 
     def send(self, message: str) -> None:
         """Sends a message (after encoding it) to Node."""
-        encoded = self.encode_to_numbers(" " + message + " ")
+        encoded = self._encode_to_numbers(" " + message + " ")
         print(encoded)
         sys.stdout.flush()
         if self.logging:
@@ -50,7 +50,7 @@ class NodeCommunicator:
         and decodes it from numeric format.
         """
         line = sys.stdin.readline()
-        return self.decode_from_numbers(line)
+        return self._decode_from_numbers(line)
 
     def _listen(self):
         """Internal method to listen for incoming messages in a separate thread."""
@@ -61,7 +61,7 @@ class NodeCommunicator:
             line = sys.stdin.readline()
             if not line:
                 break
-            decoded_message = self.decode_from_numbers(line)
+            decoded_message = self._decode_from_numbers(line)
             if self.logging:
                 print("Received from Node:", decoded_message)
             if self.on_message:

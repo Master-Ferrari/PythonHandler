@@ -3,7 +3,7 @@ import { TextEncoder } from "util";
 import { format, print, printD, printE } from "ferrari-console-utils";
 import { existsSync } from "fs";
 
-interface PythonCommunicatorOptions {
+export interface PythonCommunicatorOptions {
     pythonPronoun?: string;
     onData?: (data: string) => any;
     onError?: (error: string) => any;

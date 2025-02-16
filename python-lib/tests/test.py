@@ -29,6 +29,11 @@ communicator = NodeCommunicator(
 # Start asynchronous message listening (if needed)
 communicator.start()
 
+import time
+while True:
+    time.sleep(1)
+
+
 # # Example of synchronous reading using the library's read_message() method
 # while True:
 #     # Read a message using the read_message() method
@@ -38,7 +43,3 @@ communicator.start()
 #         # Process the message (for example, sending an echo reply)
 #         communicator.send("Echo (synchronously): " + user_message)
 #     time.sleep(0.1)
-
-import time
-while True:
-    time.sleep(1)

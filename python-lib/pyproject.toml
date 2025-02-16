@@ -4,6 +4,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "node_to_python"
-version = "0.1.0"
+version = "0.1.1"
 description = "node to python communication poop"
 readme = "README.md"
